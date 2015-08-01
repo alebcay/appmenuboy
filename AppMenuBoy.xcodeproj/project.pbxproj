@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		1337DD5F0CF3515A00204DF7 /* AppMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337DD5E0CF3515A00204DF7 /* AppMenu.m */; };
 		134C05DC0D48032300B1AA5F /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 134C05DB0D48032300B1AA5F /* ReadMe.rtf */; };
 		134C05DF0D48032F00B1AA5F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 134C05DD0D48032F00B1AA5F /* Credits.rtf */; };
-		63244CC014A3F25000EAD18D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63244CBE14A3F25000EAD18D /* MainMenu.xib */; };
 		63244CC314A3F27600EAD18D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63244CC114A3F27600EAD18D /* MainMenu.xib */; };
 		635FDA5710365CE000A68273 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 635FDA5510365CE000A68273 /* Localizable.strings */; };
 		639185500CF8B23500DE3C02 /* AppMenu.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6391854F0CF8B23500DE3C02 /* AppMenu.icns */; };
@@ -36,7 +35,6 @@
 		134C05DE0D48032F00B1AA5F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		63244CBF14A3F25000EAD18D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		63244CC214A3F27600EAD18D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		635FDA5610365CE000A68273 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6391854F0CF8B23500DE3C02 /* AppMenu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppMenu.icns; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				130FB6270D08C6BA00D793CE /* Documentation */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				63244CBE14A3F25000EAD18D /* MainMenu.xib */,
 			);
 			name = AppMenu;
 			sourceTree = "<group>";
@@ -183,8 +180,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "AppMenuBoy" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -212,7 +212,6 @@
 				134C05DC0D48032300B1AA5F /* ReadMe.rtf in Resources */,
 				134C05DF0D48032F00B1AA5F /* Credits.rtf in Resources */,
 				635FDA5710365CE000A68273 /* Localizable.strings in Resources */,
-				63244CC014A3F25000EAD18D /* MainMenu.xib in Resources */,
 				63244CC314A3F27600EAD18D /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,14 +249,6 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		63244CBE14A3F25000EAD18D /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				63244CBF14A3F25000EAD18D /* English */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		63244CC114A3F27600EAD18D /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,6 +271,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -297,6 +289,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -311,26 +304,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				"GCC_VERSION[sdk=macosx*][arch=*]" = 4.0;
+				"GCC_VERSION[sdk=macosx*][arch=*]" = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.4;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				"GCC_VERSION[sdk=macosx*][arch=*]" = 4.0;
+				"GCC_VERSION[sdk=macosx*][arch=*]" = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
