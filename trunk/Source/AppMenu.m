@@ -103,7 +103,7 @@
 #define DEBUGBLOCK if(0)
 #endif
 
-// Assume that Carbon apps are not supported in OS X 10.7 an d newer.
+// Assume that Carbon apps are not supported in OS X 10.7 and newer.
 static BOOL AreCarbonAppsSupported(void) {
   static BOOL isInitialized = NO;
   static BOOL areCarbonAppsSupported = YES;
@@ -122,20 +122,11 @@ static BOOL AreCarbonAppsSupported(void) {
  
 @interface NSMenu(AppMenu)
 
-- (void)removeAllItems;
-
 - (void)resetFromArray:(NSArray *)array;
 
 @end
 
 @implementation NSMenu(AppMenu)
-
-- (void)removeAllItems {
-  int i, iCount = [self numberOfItems];
-  for (i = iCount - 1;0 <= i; --i) {
-    [self removeItemAtIndex:i];
-  }
-}
 
 - (void)resetFromArray:(NSArray *)array {
   [self removeAllItems];
@@ -351,7 +342,11 @@ typedef enum  {
     }
     return kSubDir;
   } else if (AreCarbonAppsSupported()) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+// The replacement doesn't traverse links
     NSDictionary *fileAttributes = [fm fileAttributesAtPath:fullPath traverseLink:YES];
+#pragma clang diagnostic pop
     OSType typeCode = [fileAttributes fileHFSTypeCode];
     if (typeCode == 'APPL') {      
       return kCarbonApp;
@@ -364,7 +359,8 @@ typedef enum  {
 // main routine of this program: loop over a directory building menu items into an array
 - (void)buildTree:(NSString *)path into:(NSMutableArray *)items depth:(int)depth shouldListen:(BOOL)shouldListen {
   NSFileManager *fm = [NSFileManager defaultManager];
-  NSArray *files = [fm directoryContentsAtPath:path];
+  NSError *error = nil;
+  NSArray *files = [fm contentsOfDirectoryAtPath:path error:&error];
   NSEnumerator *fileEnumerator = [files objectEnumerator];
   NSString *file;
   while (nil != (file = [fileEnumerator nextObject])) {
